@@ -1,6 +1,8 @@
 LINE
 ====
 
+**Not completed yet... (2014.08.02 ~)**
+
 May the LINE be with you...
 
     >>> from line import LineClient
