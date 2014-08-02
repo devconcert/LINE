@@ -1,7 +1,7 @@
 LINE
 ====
 
-May the LINE be with you!
+May the LINE be with you...
 
     >>> from line import LineClient
     >>> cli = LineClient(YOUR_ID, YOUR_PASSWORD)
@@ -41,4 +41,4 @@ Source codes are distributed under BSD license.
 Author
 ------
 
-Taehoon Kim / [@carpedm20]('http://carpedm20.github.io/about/')
+Taehoon Kim / [@carpedm20](http://carpedm20.github.io/about/)
