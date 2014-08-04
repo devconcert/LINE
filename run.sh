@@ -1,4 +1,12 @@
 #!/bin/sh
+"""
+    run.sh
+    ~~~~~~
+
+    :copyright: (c) 2014 by Taehoon Kim.
+    :license: BSD, see LICENSE for more details.
+"""
+
 base="line"
 linethrift="$base/linethrift"
 if [ -d "$linethrift" ]; then
@@ -14,3 +22,5 @@ thrift -out $linethrift --gen py:new_style $base/line.thrift
 rm $linethrift/__init__.py
 mv $linethrift/linethrift/*.py $linethrift
 rm -rf $linethrift/linethrift
+
+
