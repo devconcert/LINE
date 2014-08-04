@@ -4,12 +4,13 @@ NOTICE! (2014-08-04)
 
 I finished to make a POC code and ready to make this LINE library, but I have a lot of jobs to do these days.. It might be take some times to complete this library..
 
-So I uploaded POC code for someone who wants to make a LINE bot quickly! Just edit the POC code and enojoy before I finish this LINE library~
+So I uploaded [poc.py](poc.py) for someone who want to make a LINE bot ASAP! Just edit the POC code and enojoy it before I finish this LINE library~
 
 > May the LINE be with you...
+> 
 > by [carpedm20](http://carpedm20.github.io/about/)
 
-[a relative link](poc.py)
+[poc.py](poc.py)
 
 
 LINE
