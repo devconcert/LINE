@@ -18,6 +18,9 @@ Therefore, I uploaded [poc.py](poc.py) for someone who wants to play with LINE A
 LINE
 ====
 
+[![PyPi version](https://pypip.in/v/line/badge.png)](https://crate.io/packages/line/)
+[![PyPi downloads](https://pypip.in/d/line/badge.png)](https://crate.io/packages/line/)
+
 May the LINE be with you...
 
     >>> from line import LineClient
