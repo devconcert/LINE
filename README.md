@@ -2,15 +2,17 @@
 NOTICE (2014-08-04)
 ====================
 
-I finished to write a POC code and ready to write this LINE library, but I have a lot of jobs to do these days.. so it might take some time to finish this library..
+I finished to write a POC code and ready to write this LINE library, but I have a lot of works to do these days.. so it might take some time to finish this library..
 
-So I uploaded [poc.py](poc.py) for someone who wants to make a LINE bot ASAP! Just edit the POC code and enojoy it before I finish this LINE library~
+Therefore, I uploaded [poc.py](poc.py) for someone who wants to play with LINE ASAP! Just edit the POC code and enojoy it before I finish this LINE library~
 
 **Read the instruction** of [poc.py](poc.py#L10) be fore you test the code!
 
 > May the LINE be with you...
 > 
 > by [carpedm20](http://carpedm20.github.io/about/)
+
+*ps. this code was inspired from [here](http://ssut-dev.tumblr.com/post/79956444735/using-line-with-apache-thrift-protocol)*
 
 
 LINE

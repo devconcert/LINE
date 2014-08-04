@@ -9,7 +9,7 @@
 
     Requirements:
         1. Install thirft and python-thirft module
-        2. download "https://gist.githubusercontent.com/ssut/9150461/raw/03d5892d867ecae66250bed10da5eb3a399530b2/line.thrift"
+        2. Get a line.thrift code from "https://gist.github.com/ssut/9150461"
         3. thrift -r -gen py line.thrift
         4. python poc.py
 
