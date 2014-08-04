@@ -1,22 +1,22 @@
 
-NOTICE! (2014-08-04)
+NOTICE (2014-08-04)
 ====================
 
-I finished to make a POC code and ready to make this LINE library, but I have a lot of jobs to do these days.. It might be take some times to complete this library..
+I finished to write a POC code and ready to write this LINE library, but I have a lot of jobs to do these days.. so it might take some time to finish this library..
 
-So I uploaded [poc.py](poc.py) for someone who want to make a LINE bot ASAP! Just edit the POC code and enojoy it before I finish this LINE library~
+So I uploaded [poc.py](poc.py) for someone who wants to make a LINE bot ASAP! Just edit the POC code and enojoy it before I finish this LINE library~
+
+**Read the instruction** of [poc.py](poc.py#4) be fore you test the code!
 
 > May the LINE be with you...
 > 
 > by [carpedm20](http://carpedm20.github.io/about/)
 
-[poc.py](poc.py)
-
 
 LINE
 ====
 
-**Not completed yet... (2014.08.02 ~)**
+**Not finished yet... (2014.08.02 ~)**
 
 May the LINE be with you...
 
