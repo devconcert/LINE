@@ -14,6 +14,9 @@ from thrift.transport import TTransport
 from thrift.transport import TSocket
 from thrift.transport import THttpClient
 from thrift.protocol import TCompactProtocol
+
+from linethrift import LineThrift
+
 try:
     import simplejson as json
 except ImportError:
@@ -32,17 +35,17 @@ class LineClient(object):
 
     LINE_DOMAIN = "http://gd2.line.naver.jp"
 
-    LINE_HTTP_URL    = LINE_DOMAIN + "/api/v4/TalkService.do"
-    LINE_SESSION_URL = LINE_DOMAIN + "/authct/v1/keys/line"
+    LINE_HTTP_URL        = LINE_DOMAIN + "/api/v4/TalkService.do"
+    LINE_SESSION_URL     = LINE_DOMAIN + "/authct/v1/keys/line"
+    LINE_CERTIFICATE_URL = LINE_DOMAIN + "/Q"
 
-    provider    = None
-    certificate = None
+    ip          = "127.0.0.1"
     version     = "3.7.0"
-    comm_name   = "carpedm20"
+    com_name   = "carpedm20"
 
     _session = requests.session()
     _headers = {}
-    
+
     def __init__(self, id, password, is_mac=True):
         """Initialize LINE instance with provided information
 
@@ -53,8 +56,19 @@ class LineClient(object):
         self.password = password
         self.is_mac = is_mac
 
-        pin_code = self._login()
-        print pin_code
+        self._login()
+        
+        print "Enter PinCode '%s' to your mobile phone" % self._pinCode
+
+    def get_json(self, url):
+        return json.loads(self._session.get(url, headers=self._headers).text)
+
+    def login(self):
+        j = self.get_json(self.LINE_CERTIFICATE_URL)
+        self.verifier = j['result']['verifier']
+
+        msg = self.client.loginWithVerifierForCertificate(self.verifier)
+        print msg
 
     def _login(self):
         """Login to LINE server."""
@@ -75,8 +89,7 @@ class LineClient(object):
         self._headers['User-Agent']         = user_agent
         self._headers['X-Line-Application'] = application
 
-        r = self._session.get(self.LINE_SESSION_URL, headers=self._headers)
-        j = json.loads(r.text)
+        j = self.get_json(self.LINE_SESSION_URL)
 
         session_key = j['session_key']
         message     = (chr(len(session_key)) + session_key +
@@ -86,17 +99,16 @@ class LineClient(object):
         keyname, n, e = j['rsa_key'].split(",")
         pub_key       = rsa.PublicKey(int(n,16), int(e,16))
         crypto        = rsa.encrypt(message, pub_key).encode('hex')
-        print crypto
-        print self._header
 
         transport = THttpClient.THttpClient(self.LINE_HTTP_URL)
-        transport.setCustomHeaders(self._header)
+        transport.setCustomHeaders(self._headers)
 
-        protocol = TCompactProtocol.TCompactProtocol(transport)
+        self.protocol = TCompactProtocol.TCompactProtocol(transport)
+        self.client   = LineThrift.Client(self.protocol)
 
-        client = Line.Client(protocol)
-        #msg    = client.loginWithIdentityCredentialForCertificate(
-        #            user, message, keyname, crypto, False,
-        #            ip, com_name, self.provider, "")
-
-        return msg
+        msg = self.client.loginWithIdentityCredentialForCertificate(
+                self.id, self.password, False, self.ip,
+                self.com_name, self.provider, crypto)
+        
+        self._headers['X-Line-Access'] = msg.verifier
+        self._pinCode = msg.pinCode
