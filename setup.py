@@ -45,8 +45,6 @@ setup(
     url='http://pythonhosted.org/line',
     description='May the LINE be with you...',
     long_description=__doc__,
-    platforms='any',
-    packages=find_packages(),
     include_package_data=True,
     classifiers=[
         'Development Status :: 0 - Beta',
@@ -68,5 +66,5 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Communications :: Chat',
     ],
-    install_requires=['setuptools'],
+    install_requires=['requests'],
 )

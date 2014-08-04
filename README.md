@@ -23,7 +23,7 @@ LINE
 May the LINE be with you...
 
     >>> from line import LineClient
-    >>> cli = LineClient(YOUR_ID, YOUR_PASSWORD)
+    >>> cli = Line(YOUR_ID, YOUR_PASSWORD)
 
 Installing
 ----------
