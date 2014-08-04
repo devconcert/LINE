@@ -28,15 +28,15 @@ May the LINE be with you...
 Installing
 ----------
 
-1. using pip:
+1. using pip: (Not working right now)
 
     $ pip install line
 
-1. using easy_install:
+1. using easy_install: (Not working right now)
 
-    $ easy_install line
+    $ easy_install line 
 
-1. using git
+1. using git: (Not working right now)
 
     $ git clone git://github.com/carpedm20/line.git
     $ cd line
