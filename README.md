@@ -18,12 +18,11 @@ Therefore, I uploaded [poc.py](poc.py) for someone who wants to play with LINE A
 LINE
 ====
 
-**Not finished yet... (2014.08.02 ~)**
-
 May the LINE be with you...
 
     >>> from line import LineClient
-    >>> cli = Line(YOUR_ID, YOUR_PASSWORD)
+    >>> l=LineClient(YOUR_ID, YOUR_PASSWORD);
+
 
 Installing
 ----------
