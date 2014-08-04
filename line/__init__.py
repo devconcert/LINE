@@ -12,9 +12,9 @@
 from __future__ import absolute_import, unicode_literals
 import sys
 
-from . import client
+from .client import LineClient
 
 __version__ = '0.0.1'
-__all__ = ['client']
+__all__ = ['LineClient']
 
 

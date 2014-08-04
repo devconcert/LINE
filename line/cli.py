@@ -11,8 +11,9 @@
 
 import sys
 import os
+from cmd import Cmd
 
-class LineCLI(object):
+class LineCLI(Cmd):
     """LINE command line interface object.
 
     :param client: LineClient instance
@@ -20,5 +21,5 @@ class LineCLI(object):
     def __init__(self, client):
         self.client = client
 
-        print self.__dict__.items()
-        
+    def do_get_groups(self, args):
+        """Get group information"""

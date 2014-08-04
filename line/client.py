@@ -8,6 +8,16 @@
 """
 from __future__ import unicode_literals
 import re
+import rsa
+import requests
+from thrift.transport import TTransport
+from thrift.transport import TSocket
+from thrift.transport import THttpClient
+from thrift.protocol import TCompactProtocol
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 __all__ = ['LineClient']
 
@@ -31,6 +41,7 @@ class LineClient(object):
     comm_name   = "carpedm20"
 
     _session = requests.session()
+    _headers = {}
     
     def __init__(self, id, password, is_mac=True):
         """Initialize LINE instance with provided information
@@ -47,26 +58,24 @@ class LineClient(object):
 
     def _login(self):
         """Login to LINE server."""
-        if EMAIL_REGEX.match(id):
-            self.provider = Line.Provider.LINE
+        if EMAIL_REGEX.match(self.id):
+            self.provider = 1
         else:
-            self.provider = ine.Provider.NAVER_KR
+            self.provider = 2
 
         if self.is_mac:
             os_version  = "10.9.4-MAVERICKS-x64"
-            user_agent  = "DESKTOP:MAC:%s(%s)" % (os_version, version)
-            application = ("DESKTOPMAC\t%(version)\tMAC\t%(os_version)"
-                           %{'version': version, 'os_version': os_version})
+            user_agent  = "DESKTOP:MAC:%s(%s)" % (os_version, self.version)
+            application = "DESKTOPMAC\t%s\tMAC\t%s" % (self.version, os_version)
         else:
             os_version  = "5.1.2600-XP-x64"
-            user_agent  = "DESKTOP:WIN:%s(%s)" % (os_version, version)
-            application = ("DESKTOPWIN\t%(version)\tWINDOWS\t%(os_version)"
-                           %{'version': version, 'os_version': os_version})
+            user_agent  = "DESKTOP:WIN:%s(%s)" % (os_version, self.version)
+            application = "DESKTOPWIN\t%s\tWINDOWS\t%s" % (self.version, os_version)
 
         self._headers['User-Agent']         = user_agent
         self._headers['X-Line-Application'] = application
 
-        r = self._session.get(LINE_SESSION_URL, headers=self._headers)
+        r = self._session.get(self.LINE_SESSION_URL, headers=self._headers)
         j = json.loads(r.text)
 
         session_key = j['session_key']
@@ -74,18 +83,20 @@ class LineClient(object):
                        chr(len(self.id)) + self.id +
                        chr(len(self.password)) + self.password).encode('utf-8')
 
-        keyname, n, e = session_key.split(",")
-        pub_key       = rsa,Publickey(int(n,16), int(e,16))
+        keyname, n, e = j['rsa_key'].split(",")
+        pub_key       = rsa.PublicKey(int(n,16), int(e,16))
         crypto        = rsa.encrypt(message, pub_key).encode('hex')
+        print crypto
+        print self._header
 
-        transport = THttpClient.THttpClient(LINE_HTTP_URL)
+        transport = THttpClient.THttpClient(self.LINE_HTTP_URL)
         transport.setCustomHeaders(self._header)
 
         protocol = TCompactProtocol.TCompactProtocol(transport)
 
         client = Line.Client(protocol)
-        msg    = client.loginWithIdentityCredentialForCertificate(
-                    user, message, keyname, crypto, False,
-                    ip, com_name, self.provider, "")
+        #msg    = client.loginWithIdentityCredentialForCertificate(
+        #            user, message, keyname, crypto, False,
+        #            ip, com_name, self.provider, "")
 
         return msg

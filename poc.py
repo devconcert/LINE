@@ -5,7 +5,7 @@
 
     POC code for LINE python library.
 
-    Warning!! This is a really quick-and-dirty code!
+    Warning!! This is a quick-and-dirty code!
 
     Requirements:
         1. Install thirft and python-thirft module
