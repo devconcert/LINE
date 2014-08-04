@@ -6,7 +6,7 @@ I finished to write a POC code and ready to write this LINE library, but I have 
 
 So I uploaded [poc.py](poc.py) for someone who wants to make a LINE bot ASAP! Just edit the POC code and enojoy it before I finish this LINE library~
 
-**Read the instruction** of [poc.py](poc.py#4) be fore you test the code!
+**Read the instruction** of [poc.py](poc.py#L10) be fore you test the code!
 
 > May the LINE be with you...
 > 
